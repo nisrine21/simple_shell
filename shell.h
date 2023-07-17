@@ -9,6 +9,7 @@
 
 #define MAX_COMMAND_OF_NIYOU 64
 #define DELIMITERS " \t\r\n\a"
+#define MAX_COMMAND_NIYOU
 
 extern char **environ;
 
