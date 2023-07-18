@@ -1,15 +1,6 @@
 #include "shell.h"
 #include <sys/wait.h>
 
-/**
- * prompt - handles the user interaction, command execution
- * and basic shell functionalities
- *
- * @av: array of strings
- * @nv: array of strings
- * Return: not return any value
- */
-
 void prompt(char **av, char **nv)
 {
 	char *string = NULL;
