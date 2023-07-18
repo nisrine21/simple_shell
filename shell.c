@@ -12,7 +12,7 @@
 
 int main(int x, char **av, char **nv)
 {
-        if (x == 1)
-                prompt(av, nv);
-        return (0);
+if (x == 1)
+prompt(av, nv);
+return (0);
 }

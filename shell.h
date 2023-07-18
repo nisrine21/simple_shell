@@ -8,4 +8,4 @@
 void prompt(char **av, char **env);
 
 
-#endif /SHELL_H/
+#endif
