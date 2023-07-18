@@ -11,5 +11,6 @@
 void tokenizeInput(char *string, char *argv[], size_t maxArgs);
 void executeCmd(char *av[], char *nv[], char *argv[]);
 void prompt(char **av, char **nv);
-
+char *find_path(char *cmd);
+void handle_env(char **nv);
 #endif /*SHELL_H*/
