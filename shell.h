@@ -12,4 +12,4 @@ void tokenizeInput(char *string, char *argv[], size_t maxArgs);
 void executeCmd(char *av[], char *nv[], char *argv[]);
 void prompt(char **av, char **nv);
 
-#endif /* SHELL_H */
+#endif /*SHELL_H*/
