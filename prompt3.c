@@ -57,11 +57,6 @@ else
 wait(&status);
 }
 }
-/**
- * prompt - Prompt the user for a command
- * @av: The array of arguments
- * @nv: The array of arguments
- */
 void prompt(char **av, char **nv)
 {
 char *string;
@@ -92,14 +87,6 @@ continue;
 execute_command(argv, av, nv);
 }
 }
-/**
- * main - The main function of the shell
- * @ac: The count of arguments
- * @av: The array of arguments
- * @nv: The array of arguments
- *
- * Return: EXIT_SUCCESS on successful exit
- */
 int main(int ac, char **av, char **nv)
 {
 (void)ac;
