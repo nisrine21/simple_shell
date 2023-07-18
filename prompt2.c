@@ -71,7 +71,7 @@ void executeCmd(char *av[], char *nv[], char *argv[])
  * Return: not return any value
  */
 
-void prompt(char **av, char **nv)*
+void prompt(char **av, char **nv)
 {
 	char *string = NULL;
 	size_t n = 0;
