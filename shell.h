@@ -5,7 +5,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void prompt(char **av, char **env);
+#define MAX_COMMAND_NAYOU 100
 
+/* Function prototypes*/
+void tokenizeInput(char *string, char *argv[], size_t maxArgs);
+void executeCmd(char *av[], char *nv[], char *argv[]);
+void prompt(char **av, char **nv);
 
-#endif
+#endif /* SHELL_H */
