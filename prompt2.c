@@ -1,6 +1,9 @@
 #include "shell.h"
 #include <sys/wait.h>
 
+#MAX_COMMAND_NIYOU 100
+
+
 /**
  * tokenizeInput - Tokenizes the user's command
  * string and stores individual arguments in argv.
