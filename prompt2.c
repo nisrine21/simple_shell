@@ -39,7 +39,7 @@ void prompt(char **av, char **nv)
 		argv[j] = NULL;
 		ch_pid = fork();
 		if (ch_pid == -1)
-		{
+		{vim -r prompt2.c
 			free(string);
 			exit(EXIT_FAILURE);
 		}
