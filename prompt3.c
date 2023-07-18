@@ -26,7 +26,7 @@ return (argv);
  * @av: The array of arguments
  * @nv: The array of arguments
  */
-void execute_command(char **argv, char **av, char **nv)
+void executeCmd(char **argv, char **av, char **nv)
 {
 pid_t ch_pid;
 char *path;
@@ -92,9 +92,19 @@ if (strcmp(argv[0], "env") == 0)
 handle_env(nv);
 continue;
 }
-execute_command(argv, av, nv);
+executeCmd(argv, av, nv);
 }
 }
+
+/**
+ * main - entry point of the simple shell program
+ *
+ * @ac: number of command-line arguments
+ * @av: array of strings
+ * @nv: array of strings
+ *
+ * Return: 0 on success
+ */
 int main(int ac, char **av, char **nv)
 {
 (void)ac;
