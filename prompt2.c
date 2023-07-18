@@ -1,7 +1,6 @@
 #include "shell.h"
 #include <sys/wait.h>
 
-
 /**
  * tokenizeInput - Tokenizes the user's command
  * string and stores individual arguments in argv.
@@ -47,7 +46,7 @@ void executeCmd(char *av[], char *nv[], char *argv[])
 	else if (ch_pid == 0)
 	{
 		if (execve(argv[0], argv, nv) == -1)
-	i	{
+		{
 			printf("%s: No such file or directory\n", av[0]);
 			exit(EXIT_FAILURE);
 		}
