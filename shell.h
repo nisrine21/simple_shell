@@ -7,13 +7,13 @@
 #include <sys/wait.h>
 #include <string.h>
 
-#define MAX_COMMAND_OF_NIYOU 64
-#define DELIMITERS " \t\r\n\a"
+#define MAX_COMMAND_OF_NIYOU 100
 #define MAX_COMMAND_NIYOU
 
-extern char **environ;
-
-void prompt(char **av, char **env);
+/* Function prototypes*/ 
+void tokenizeInput(char *string, char *argv[], size_t maxArgs);
+void executeCmd(char *av[], char *nv[], char *argv[]);
+void prompt(char **av, char **nv);
 
 
 #endif /*SHELL_H*/
