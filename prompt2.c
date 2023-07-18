@@ -17,7 +17,7 @@
 
 void tokenizeInput(char *string, char *argv[], size_t maxArgs)
 {
-	int j = 0;
+	size_t j = 0;
 
 	argv[j] = strtok(string, " ");
 	while (argv[j] != NULL && j < maxArgs - 1)
