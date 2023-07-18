@@ -21,12 +21,12 @@ argv[++i] = strtok(NULL, DELIMITERS);
 return (argv);
 }
 /**
- * execute_command - Execute a command
+ * executecmd - Execute a cmd
  * @argv: The array of arguments
  * @av: The array of arguments
  * @nv: The array of arguments
  */
-void execute_command(char **argv, char **av, char **nv)
+void executecmd(char **argv, char **av, char **nv)
 {
 pid_t ch_pid;
 char *path;
@@ -89,7 +89,7 @@ if (strcmp(argv[0], "env") == 0)
 handle_env(nv);
 continue;
 }
-execute_command(argv, av, nv);
+executecmd(argv, av, nv);
 }
 }
 /**
