@@ -1,48 +1,8 @@
 #include "shell.h"
 #include <sys/wait.h>
 
-<<<<<<< HEAD
-#define MAX_COMMAND_NIYOU 100 /max number of cmd to be runn/
 
-void prompt(char **av, char **nv)
-{
-char *string = NULL;
-int i,j , status;
-size_t n = 0;
-ssize_t n_char;
-char
-*argv[MAX_COMMAND_NIYOU]; pid_t ch_pid;
-while(1)
-{  
-/* display the prompt*/ 
-printf("cisfun$ ");
-/* read user's cmd */ 
-n_char = getline(&string, &n, stdin);
-if (n_char == -1)
-{
-free(string);
-exit(EXIT_FAILURE);
-}
-i = 0;
-while (string[i])
-{
-if (string[i] == '\n')
-string[i] = 0;
-i++;
-}
-j = 0;
-argv[j] = strtok(string, " ");
-while (argv[j] != NULL
-MAX_COMMAND_NIYOU - 1)
-{
-j++;
-argv[j] = strtok(NULL, " ");
-}
-argv[j] = NULL;
-ch_pid = fork();
-if (ch_pid == -1)
-=======
-#define MAX_COMMAND_NIYOU 100
+#define MAX_COMMAND_NIYOU 100 /*max number of cmd to be run*/
 
 
 /**
@@ -79,7 +39,6 @@ argv[j] = NULL;
  */
 
 void executeCmd(char *av[], char *nv[], char *argv[])
->>>>>>> b2b9d3a10cf3875b510d71e770da32ca716def11
 {
 	pid_t ch_pid = fork();
 
@@ -112,20 +71,8 @@ void executeCmd(char *av[], char *nv[], char *argv[])
  * Return: not return any value
  */
 
-void prompt(char **av, char **nv)
+void prompt(char **av, char **nv)*
 {
-<<<<<<< HEAD
-if (execve(argv[0], argv, nv) == -1)
-
-printf("%s: No such file or directory\n", av[0]);
-free(string);
-exit(EXIT_FAILURE);
-
-}
-else
-wait(&status);
-}
-=======
 	char *string = NULL;
 	size_t n = 0;
 	ssize_t n_char;
@@ -148,5 +95,4 @@ wait(&status);
 		executeCmd(av, nv, argv);
 	}
 	free(string);
->>>>>>> b2b9d3a10cf3875b510d71e770da32ca716def11
 }
