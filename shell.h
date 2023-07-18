@@ -7,8 +7,7 @@
 #include <sys/wait.h>
 #include <string.h>
 
-#define MAX_COMMAND_OF_NIYOU 100
-#define MAX_COMMAND_NIYOU
+#define MAX_COMMAND_NIYOU 100
 
 /* Function prototypes*/ 
 void tokenizeInput(char *string, char *argv[], size_t maxArgs);

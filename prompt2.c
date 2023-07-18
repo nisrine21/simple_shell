@@ -1,7 +1,7 @@
 #include "shell.h"
 #include <sys/wait.h>
 
-#MAX_COMMAND_NIYOU 100
+#define MAX_COMMAND_NIYOU 100
 
 
 /**
