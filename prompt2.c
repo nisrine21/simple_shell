@@ -67,7 +67,7 @@ void executeCmd(char *av[], char *nv[], char *argv[])
 		wait(&status);
 	}
 }
-
+/*
 void prompt(char **av, char **nv)
 {
 	char *string = NULL;
@@ -77,19 +77,17 @@ void prompt(char **av, char **nv)
 
 	while (1)
 	{
-		/* Display the prompt*/
 		printf("cisfun$ ");
-		/* Read user's command*/
 		n_char = getline(&string, &n, stdin);
 		if (n_char == -1)
 	{
 		free(string);
 		exit(EXIT_FAILURE);
 	}
-		/* Remove newline character*/
 		string[n_char - 1] = '\0';
 		tokenizeInput(string, argv, MAX_COMMAND_NIYOU);
 		executeCmd(av, nv, argv);
 	}
 	free(string);
 }
+*/

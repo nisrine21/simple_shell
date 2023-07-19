@@ -25,8 +25,9 @@ char *find_path(char *cmd, char **envp)
 	char *path_env = NULL;
 	char *path = NULL;
 	char *full_path = NULL;
+	int i;
 
-	for (int i = 0; envp[i] != NULL; i++)
+	for (i = 0; envp[i] != NULL; i++)
 	{
 		if (strncmp(envp[i], "PATH=", 5) == 0)
 		{
@@ -73,7 +74,7 @@ return (NULL);
  */
 
 
-
+/*
 void tokenizeInput(char *string, char *argv[], size_t maxArgs)
 {
 	UNUSED(maxArgs);
@@ -93,7 +94,7 @@ void tokenizeInput(char *string, char *argv[], size_t maxArgs)
 	}
 	argv[j] = NULL;
 }
-
+*/
 
 /**
  * executeCmd - Execute a command
@@ -104,7 +105,7 @@ void tokenizeInput(char *string, char *argv[], size_t maxArgs)
  * Return: no return value
  */
 
-
+/*
 void executeCmd(char *argv[], char *av[], char *nv[])
 {
 	UNUSED(av)
@@ -140,7 +141,7 @@ wait(&status);
 free(path);
 }
 
-
+*/
 
 /**
  * prompt - handles the user interaction, command execution
@@ -151,7 +152,7 @@ free(path);
  * Return: not return any value
  */
 
-
+/*
 void prompt(char **av, char **nv)
 {
 char *string = NULL;
@@ -174,6 +175,8 @@ tokenizeInput(string, argv, MAX_COMMAND_NIYOU);
 executeCmd(av, nv, argv);
 }
 }
+
+*/
 
 /**
  * main - entry point of the simple shell program

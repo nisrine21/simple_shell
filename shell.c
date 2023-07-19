@@ -4,11 +4,11 @@
 
 char *find_path(char *cmd,char **envp)
 {
-	UNUSED(cmd);
 	char *path_env = NULL;
 	char *path = NULL;
 	char *full_path = NULL;
 	int i;
+	UNUSED(cmd);
 
 	for (i = 0; envp[i] != NULL; i++)
 	{
@@ -99,6 +99,7 @@ void executeCmd(char *av[], char *nv[], char *argv[])
 
 int main(int x, char **av, char **nv)
 {
+	UNUSED(x);
 if (x == 1)
 prompt(av, nv);
 return (0);
