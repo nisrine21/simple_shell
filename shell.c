@@ -1,21 +1,53 @@
 #include "shell.h"
-#include <sys/wait.h>
-char *find_path(char *cmd, char **envp)
+#include <stdio.h>
+char *find_path(char *cmd,char **envp)
 {
-/** Implement the logic to search for the command
- * in the paths specified in the "envp" array.
- * Return the full path of the command if found, or NULL if not found.
- * This function should handle searching through the directories
- * listed in the "PATH" environment variable.
- * You can use functions like "getenv" and "strtok" to accomplish this.
- * (Implementation is not provided here, as it depends
- * on the specific requirements of your shell.)
- */
-	return NULL;
+	char *path_env = NULL;
+	char *path = NULL;
+	char *full_path = NULL;
+
+	for (int i = 0; envp[i] != NULL; i++)
+	{
+		if (strncmp(envp[i], "PATH=", 5) == 0)
+		{
+			path_env = envp[i] + 5;
+			break;
+	}
+	}
+	if (path_env == NULL)
+	{
+		return (NULL);
+	}
+	path = strtok(path_env, ":");
+	while (path != NULL)
+	{
+		size_t len = strlen(path) + strlen(cmd) + 2;
+
+		full_path = (char *)malloc(len * sizeof(char));
+		if (full_path == NULL)
+		{
+			perror("malloc");
+			exit(EXIT_FAILURE);
+		}
+		snprintf(full_path, len, "%s/%s", path, cmd);
+
+		if (access(full_path, X_OK) == 0)
+			{
+				return (full_path);
+			}
+		free(full_path);
+
+		path = strtok(NULL, ":");
+}
+return (NULL);
 }
 
-void handle_env(char **envp)
+void handle_env(char **nv)
 {
+	for (int i = 0; nv[i] != NULL; i++)
+	{
+		printf("%s\n", nv[i]);
+	}
 }
 
 void tokenizeInput(char *string, char *argv[], size_t maxArgs)
@@ -59,9 +91,9 @@ void executeCmd(char *av[], char *nv[], char *argv[])
 	}
 }
 
-int main(int x, char **av, char **nv)
+/* int main(int x, char **av, char **nv)
 {
 if (x == 1)
 prompt(av, nv);
 return (0);
-}
+} */

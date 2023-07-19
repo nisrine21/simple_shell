@@ -7,6 +7,7 @@
 
 #define MAX_COMMAND_OF_NIYOU 128
 
+
 /**
  * find_path - find the full path of a command
  *  in the directories specified by the PATH environment variable.
@@ -17,6 +18,8 @@
  *  Return: The full path of the command if found,
  *  or NULL if not found.
  */
+
+/*
 
 char *find_path(char *cmd, char **envp)
 {
@@ -60,19 +63,7 @@ char *find_path(char *cmd, char **envp)
 return (NULL);
 }
 
-/**
- * handle_env - handle environment variables
- * @nv: An array of strings
- *
- * Return, void
- */
-void handle_env(char **nv)
-{
-	for (int i = 0; nv[i] != NULL; i++)
-	{
-		printf("%s\n", nv[i]);
-	}
-}
+*/
 
 /**
  * tokenizeInput - Tokenizes the user's command
@@ -82,6 +73,10 @@ void handle_env(char **nv)
  * @maxArgs: The maximum number of arguments that argv can hold.
  * Return: no return
  */
+
+
+/*
+
 void tokenizeInput(char *string, char *argv[], size_t maxArgs)
 {
 	size_t j = 0;
@@ -100,6 +95,8 @@ void tokenizeInput(char *string, char *argv[], size_t maxArgs)
 	argv[j] = NULL;
 }
 
+*/
+
 /**
  * executeCmd - Execute a command
  *
@@ -109,12 +106,13 @@ void tokenizeInput(char *string, char *argv[], size_t maxArgs)
  * Return: no return value
  */
 
+/*
+
 void executeCmd(char *argv[], char *av[], char *nv[])
 {
 pid_t ch_pid;
 char *path;
 int status;
-/* implement find_path function */
 path = find_path(argv[0], nv);
 if (path == NULL)
 {
@@ -143,6 +141,11 @@ wait(&status);
 }
 free(path);
 }
+
+
+*/
+
+
 /**
  * prompt - handles the user interaction, command execution
  * and basic shell functionalities
@@ -151,6 +154,9 @@ free(path);
  * @nv: array of strings
  * Return: not return any value
  */
+
+/*
+
 void prompt(char **av, char **nv)
 {
 char *string = NULL;
@@ -173,6 +179,9 @@ tokenizeInput(string, argv, MAX_COMMAND_NIYOU);
 executeCmd(av, nv, argv);
 }
 }
+
+
+*/
 
 /**
  * main - entry point of the simple shell program
