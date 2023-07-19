@@ -1,61 +1,147 @@
 #include "shell.h"
 #include <sys/wait.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
 
 #define MAX_COMMAND_OF_NIYOU 128
-#define DELIMITERS " \t\r\n\a"
+
 /**
- * parse_command - Parse a command into arguments
- * @string: The command string to parse
- * @argv: The array to store the parsed arguments
+ * find_path - find the full path of a command
+ *  in the directories specified by the PATH environment variable.
  *
- * Return: A pointer to the array of arguments
+ *  @cmd: The name of the command to search for.
+ *  @envp: An array of strings representing environment variables,
+ *  including the PATH variable.
+ *  Return: The full path of the command if found,
+ *  or NULL if not found.
  */
-char **parse_command(char *string, char **argv)
+
+char *find_path(char *cmd, char **envp)
 {
-int i = 0;
-argv[i] = strtok(string, DELIMITERS);
-while (argv[i] != NULL)
-{
-argv[++i] = strtok(NULL, DELIMITERS);
+	char *path_env = NULL;
+	char *path = NULL;
+	char *full_path = NULL;
+
+	for (int i = 0; envp[i] != NULL; i++)
+	{
+		if (strncmp(envp[i], "PATH=", 5) == 0)
+		{
+			path_env = envp[i] + 5;
+			break;
+	}
+	}
+	if (path_env == NULL)
+	{
+		return (NULL);
+	}
+	path = strtok(path_env, ":");
+	while (path != NULL)
+	{
+		size_t len = strlen(path) + strlen(cmd) + 2;
+
+		full_path = (char *)malloc(len * sizeof(char));
+		if (full_path == NULL)
+		{
+			perror("malloc");
+			exit(EXIT_FAILURE);
+		}
+		snprintf(full_path, len, "%s/%s", path, cmd);
+
+		if (access(full_path, X_OK) == 0)
+			{
+				return (full_path);
+			}
+		free(full_path);
+
+		path = strtok(NULL, ":");
 }
-return (argv);
+return (NULL);
 }
+
 /**
- * execute_command - Execute a command
+ * handle_env - handle environment variables
+ * @nv: An array of strings
+ *
+ * Return, void
+ */
+void handle_env(char **nv)
+{
+	for (int i = 0; nv[i] != NULL; i++)
+	{
+		printf("%s\n", nv[i]);
+	}
+}
+
+/**
+ * tokenizeInput - Tokenizes the user's command
+ *
+ * @string: The user's command string to be parsed.
+ * @argv: An array of strings to store the parsed arguments.
+ * @maxArgs: The maximum number of arguments that argv can hold.
+ * Return: no return
+ */
+void tokenizeInput(char *string, char *argv[], size_t maxArgs)
+{
+	size_t j = 0;
+
+	argv[j] = strtok(string, " ");
+	while (argv[j] != NULL && j < maxArgs - 1)
+	{
+		j++;
+		argv[j] = strtok(NULL, " ");
+	}
+	if (j == 0)
+	{
+		printf("No command entered.\n");
+		return;
+	}
+	argv[j] = NULL;
+}
+
+/**
+ * executeCmd - Execute a command
+ *
  * @argv: The array of arguments
  * @av: The array of arguments
  * @nv: The array of arguments
+ * Return: no return value
  */
-void executeCmd(char **argv, char **av, char **nv)
+
+void executeCmd(char *argv[], char *av[], char *nv[])
 {
 pid_t ch_pid;
 char *path;
 int status;
 /* implement find_path function */
-path = find_path(argv[0]);
+path = find_path(argv[0], nv);
 if (path == NULL)
 {
-fprintf(stderr, "%s: command not found\n", argv[0]);
+fprintf(stderr, "%s: command not found\n", av[0]);
 return;
 }
 ch_pid = fork();
 if (ch_pid == -1)
 {
-perror(av[0]);
+perror("fork");
+free(path);
 exit(EXIT_FAILURE);
 }
-if (ch_pid == 0)
+else if (ch_pid == 0)
 {
 if (execve(path, argv, nv) == -1)
 {
-perror(av[0]);
-}
+perror("execve");
+free(path);
 exit(EXIT_FAILURE);
+}
 }
 else
 {
 wait(&status);
 }
+free(path);
 }
 /**
  * prompt - handles the user interaction, command execution
@@ -67,10 +153,10 @@ wait(&status);
  */
 void prompt(char **av, char **nv)
 {
-char *string;
+char *string = NULL;
 size_t n = 0;
 ssize_t n_char;
-char **argv = malloc(sizeof(char *) * MAX_COMMAND_OF_NIYOU);
+char *argv[MAX_COMMAND_NIYOU];
 while (1)
 {
 printf("cisfun$ ");
@@ -78,21 +164,13 @@ n_char = getline(&string, &n, stdin);
 if (n_char == -1)
 {
 free(string);
-exit(EXIT_SUCCESS);
+exit(EXIT_FAILURE);
 }
-argv = parse_command(string, argv);
-if (strcmp(argv[0], "exit") == 0)
-{
-free(string);
-exit(EXIT_SUCCESS);
-}
-if (strcmp(argv[0], "env") == 0)
-{
-/* implement handle_env function */
-handle_env(nv);
-continue;
-}
-executeCmd(argv, av, nv);
+
+
+string[n_char - 1] = '\0';
+tokenizeInput(string, argv, MAX_COMMAND_NIYOU);
+executeCmd(av, nv, argv);
 }
 }
 

@@ -25,6 +25,12 @@ void tokenizeInput(char *string, char *argv[], size_t maxArgs)
 	j++;
 	argv[j] = strtok(NULL, " ");
 }
+
+if (j == 0)
+{
+	printf("No command entered. \n");
+	return;
+}
 argv[j] = NULL;
 }
 

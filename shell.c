@@ -1,6 +1,6 @@
 #include "shell.h"
-
-char *find_path(char *cmd)
+#include <sys/wait.h>
+char *find_path(char *cmd, char **envp)
 {
 /** Implement the logic to search for the command
  * in the paths specified in the "envp" array.
