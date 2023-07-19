@@ -19,7 +19,6 @@
  *  or NULL if not found.
  */
 
-/*
 
 char *find_path(char *cmd, char **envp)
 {
@@ -63,7 +62,6 @@ char *find_path(char *cmd, char **envp)
 return (NULL);
 }
 
-*/
 
 /**
  * tokenizeInput - Tokenizes the user's command
@@ -75,10 +73,11 @@ return (NULL);
  */
 
 
-/*
 
 void tokenizeInput(char *string, char *argv[], size_t maxArgs)
 {
+	UNUSED(maxArgs);
+
 	size_t j = 0;
 
 	argv[j] = strtok(string, " ");
@@ -95,7 +94,6 @@ void tokenizeInput(char *string, char *argv[], size_t maxArgs)
 	argv[j] = NULL;
 }
 
-*/
 
 /**
  * executeCmd - Execute a command
@@ -106,17 +104,17 @@ void tokenizeInput(char *string, char *argv[], size_t maxArgs)
  * Return: no return value
  */
 
-/*
 
 void executeCmd(char *argv[], char *av[], char *nv[])
 {
+	UNUSED(av)
 pid_t ch_pid;
 char *path;
 int status;
 path = find_path(argv[0], nv);
 if (path == NULL)
 {
-fprintf(stderr, "%s: command not found\n", av[0]);
+fprintf(stderr, "%s: command not found\n", argv[0]);
 return;
 }
 ch_pid = fork();
@@ -143,8 +141,6 @@ free(path);
 }
 
 
-*/
-
 
 /**
  * prompt - handles the user interaction, command execution
@@ -155,7 +151,6 @@ free(path);
  * Return: not return any value
  */
 
-/*
 
 void prompt(char **av, char **nv)
 {
@@ -179,9 +174,6 @@ tokenizeInput(string, argv, MAX_COMMAND_NIYOU);
 executeCmd(av, nv, argv);
 }
 }
-
-
-*/
 
 /**
  * main - entry point of the simple shell program

@@ -1,12 +1,16 @@
 #include "shell.h"
 #include <stdio.h>
+
+
 char *find_path(char *cmd,char **envp)
 {
+	UNUSED(cmd);
 	char *path_env = NULL;
 	char *path = NULL;
 	char *full_path = NULL;
+	int i;
 
-	for (int i = 0; envp[i] != NULL; i++)
+	for (i = 0; envp[i] != NULL; i++)
 	{
 		if (strncmp(envp[i], "PATH=", 5) == 0)
 		{
@@ -44,7 +48,9 @@ return (NULL);
 
 void handle_env(char **nv)
 {
-	for (int i = 0; nv[i] != NULL; i++)
+	int i;
+
+	for (i = 0; nv[i] != NULL; i++)
 	{
 		printf("%s\n", nv[i]);
 	}
@@ -91,9 +97,9 @@ void executeCmd(char *av[], char *nv[], char *argv[])
 	}
 }
 
-/* int main(int x, char **av, char **nv)
+int main(int x, char **av, char **nv)
 {
 if (x == 1)
 prompt(av, nv);
 return (0);
-} */
+}
