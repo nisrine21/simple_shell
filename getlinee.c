@@ -52,7 +52,7 @@ ssize_t input_buf(infos_t *infos, char **buf, size_t *len)
  */
 ssize_t get_input(infos_t *infos)
 {
-	static char buf; /* the ';' command chain buffer */
+	static char *buf; /* the ';' command chain buffer */
 	static size_t i, j, len;
 	ssize_t g = 0;
 	char **buf_m = &(infos->arg), *m;
@@ -81,11 +81,11 @@ ssize_t get_input(infos_t *infos)
 			infos->cmd_buf_type = CMD_NORM;
 		}
 
-		buf_m = m; /* pass back pointer to current command position */
+		*buf_m = m; /* pass back pointer to current command position */
 		return (_strlen(m)); /* return length of current command */
 	}
 
-	buf_m = buf; /* else not a chain, pass back buffer from _getline() */
+	*buf_m = buf; /* else not a chain, pass back buffer from _getline() */
 	return (g); /* return length of buffer from _getline() */
 }
 
@@ -97,7 +97,7 @@ ssize_t get_input(infos_t *infos)
  *
  * Return: g
  */
-ssize_t read_buf(info_t *infos, char *buf, size_t *h)
+ssize_t read_buf(infos_t *infos, char *buf, size_t *h)
 {
 	ssize_t g = 0;
 
@@ -131,15 +131,15 @@ int _getline(infos_t *infos, char **ptr, size_t *length)
 	if (i == len)
 		i = len = 0;
 
-	r = read_buf(infos, buf, &len);
-	if (r == -1 || (r == 0 && len == 0))
+	g = read_buf(infos, buf, &len);
+	if (g == -1 || (g == 0 && len == 0))
 		return (-1);
 
-	v = _strchr(buf + i, '\n');
-	k = v ? 1 + (unsigned int)(v - buf) : len;
+	c = _strchr(buf + i, '\n');
+	k = c ? 1 + (unsigned int)(c - buf) : len;
 	new_m = _realloc(m, l, l ? l + k : k + 1);
 	if (!new_m) /* MALLOC FAILURE! */
-		return (m ? free(p), -1 : -1);
+		return (m ? free(m), -1 : -1);
 
 	if (l)
 		_strncat(new_m, buf + i, k - i);
@@ -162,7 +162,7 @@ int _getline(infos_t *infos, char **ptr, size_t *length)
  *
  * Return: void
  */
-void sigintHandler(_attribute_((unused))int sig_num)
+void sigintHandler(__attribute__((unused))int sig_num)
 {
 	_puts("\n");
 	_puts("$ ");

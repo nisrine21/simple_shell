@@ -21,7 +21,7 @@ void set_info(infos_t *infos, char **av)
 {
 	int i = 0;
 
-	info->fname = av[0];
+	infos->fname = av[0];
 	if (infos->arg)
 	{
 		infos->argv = strtow(infos->arg, " \t");
