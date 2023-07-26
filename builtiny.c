@@ -92,7 +92,7 @@ int _myhelp(infos_t *infos)
 	arg_array = infos->argv;
 	_puts("help call works. Function not yet implemented \n");
 	if (0)
-		_puts(arg_array); /* temp att_unused workaround */
+		_puts(*arg_array); /* temp att_unused workaround */
 	return (0);
 }
 
