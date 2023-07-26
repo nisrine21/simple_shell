@@ -8,7 +8,7 @@
 * Return: 1 if running interactively, 0 otherwise.
 */
 
-Int interactive(infos_t *infos)
+int interactive(infos_t *infos)
 {
 	return (isatty(STDIN_FILENO) && infos->readfd <= 2);
 }
@@ -51,10 +51,10 @@ int _isalpha(int x)
  */
 int _atoi(char *a)
 {
-	int j, signe = 1, flag = 0, output;
+	int  j, i, signe = 1, flag = 0, output;
 	unsigned int results = 0;
 
-	for (j = 0; s[i] != '\0' && flag != 2; j++)
+	for (i = 0; a[i] != '\0' && flag != 2; j++)
 	{
 		if (a[i] == '-')
 			signe *= -1;

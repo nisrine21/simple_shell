@@ -32,7 +32,7 @@ int unset_alias(infos_t *infos, char *str)
 	b = *a;
 	*a = 0;
 	ret = delete_node_at_index(&(infos->alias),
-		get_node_index(info->alias, node_starts_with(infos->alias, str, -1)));
+		get_node_index(infos->alias, node_starts_with(infos->alias, str, -1)));
 	*a = b;
 	return (ret);
 }

@@ -58,7 +58,7 @@ void *_realloc(void *ptr, unsigned int o_size, unsigned int n_size)
 		return (NULL);
 	o_size = o_size < n_size ? o_size : n_size;
 	while (o_size--)
-		p[o_size] = ((char *)ptr)[o_size];
+		a[o_size] = ((char *)ptr)[o_size];
 	free(ptr);
 	return (a);
 }
