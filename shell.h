@@ -115,7 +115,7 @@ typedef struct builtin
 
 /* toem_shloop.c */
 int hsh(infos_t *, char **);
-int find_builtin(info_t *);
+int find_builtin(infos_t *);
 void find_cmd(infos_t *);
 void fork_cmd(infos_t *);
 
@@ -214,7 +214,7 @@ int build_history_list(infos_t *infos, char *buf, int linecount);
 int renumber_history(infos_t *infos);
 
 /* toem_vars.c */
-int is_chain(info_t *, char *, size_t *);
+int is_chain(infos_t *, char *, size_t *);
 void check_chain(infos_t *, char *, size_t *, size_t, size_t);
 int replace_alias(infos_t *);
 int replace_vars(infos_t *);
