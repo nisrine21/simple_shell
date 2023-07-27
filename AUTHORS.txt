@@ -1,8 +1,0 @@
-# CONTRIBUTORS
-# This file lists all individuals who have contributed to this project.
-# Please do not modify this file manually.
-# To update the list of contributors, use the appropriate script or tool.
-# For any contributions or bug reports, see the project's repository.
-
-Yousra Belqat <youssrabelqat@gmail.com>
-Nisrine Zaida <nisrinezaida@gmail.com>
