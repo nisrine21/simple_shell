@@ -19,7 +19,7 @@ int _getline(data_of_program *data)
 		(array_operators[0] == '|' && errno == 0))
 	{
 		/*free the memory allocated in the array if it exists */
-		for (f = 0; array_commands[i]; f++)
+		for (f = 0; array_commands[f]; f++)
 		{
 			free(array_commands[f]);
 			array_commands[f] = NULL;
@@ -33,7 +33,7 @@ int _getline(data_of_program *data)
 		/* split lines for \n or ; */
 		f = 0;
 		do {
-			array_commands[i] = str_duplicate(_strtok(i ? NULL : buff, "\n;"));
+			array_commands[f] = str_duplicate(_strtok(f ? NULL : buff, "\n;"));
 			/*checks and split for && and || operators*/
 			f = check_logic_ops(array_commands, f, array_operators);
 		} while (array_commands[f++]);
