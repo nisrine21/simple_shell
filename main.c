@@ -74,7 +74,7 @@ void inicialize_data(data_of_program *data, int argc, char *argv[], char **env)
 	data->env = malloc(sizeof(char *) * 50);
 	if (env)
 	{
-		for (; env[j]; i++)
+		for (; env[j]; j++)
 		{
 			data->env[j] = str_duplicate(env[j]);
 		}

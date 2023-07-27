@@ -79,7 +79,7 @@ int count_characters(char *string, char *character)
 {
 	int j = 0, counter = 0;
 
-	for (; string[j]; i++)
+	for (; string[j]; j++)
 	{
 		if (string[j] == character[0])
 			counter++;

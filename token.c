@@ -19,10 +19,10 @@ char *_strtok(char *line, char *delim)
 	{
 		for (i = 0; delim[i] != '\0'; i++)
 		{
-			if (*str == delim[j])
+			if (*str == delim[i])
 			break;
 		}
-		if (delim[j] == '\0')
+		if (delim[i] == '\0')
 			break;
 	}
 	copystr = str;
@@ -30,9 +30,9 @@ char *_strtok(char *line, char *delim)
 		return (NULL);
 	for (; *str != '\0'; str++)
 	{
-		for (j = 0; delim[j] != '\0'; j++)
+		for (i = 0; delim[i] != '\0'; i++)
 		{
-			if (*str == delim[j])
+			if (*str == delim[i])
 			{
 				*str = '\0';
 				str++;
