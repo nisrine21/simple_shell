@@ -38,6 +38,8 @@
 
 extern char **environ;
 
+/* prompt message */
+#define PROMPT_MESSAGE "MyShell$ "
 
 /**
  * struct liststr - singly linked list
